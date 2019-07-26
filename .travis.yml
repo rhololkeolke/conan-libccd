@@ -14,11 +14,8 @@ matrix:
           packages:
             - figlet
             - clang-8
-      env:
-        - MATRIX_EVAL="export CC=clang-8 && export CXX=clang++-8"
 
 before_install:
-  - eval "${MATRIX_EVAL}"
   # Install the proper libstdc++ version
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -q
@@ -31,8 +28,6 @@ before_install:
   - rm cmake-3.14.3-Linux-x86_64.sh
   # Double check versions
   - cmake --version
-  - $CC --version
-  - $CXX --version
 
 install:
   - conan user # creates conan data directory
