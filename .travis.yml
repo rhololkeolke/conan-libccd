@@ -23,25 +23,23 @@ linux: &linux
         - llvm-toolchain-xenial-7
       packages:
         - figlet
-        - clang-8
-        - clang-7
         
 matrix:
   include:
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CC=/usr/bin/gcc-7 CXX=/usr/bin/g++-7
+        env: CONAN_GCC_VERSIONS=7 CC=/usr/bin/gcc-7 CXX=/usr/bin/g++-7 PACKAGES="gcc-7 g++-7"
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=8 CC=/usr/bin/gcc-8 CXX=/usr/bin/g++-8
+        env: CONAN_GCC_VERSIONS=8 CC=/usr/bin/gcc-8 CXX=/usr/bin/g++-8 PACKAGES="gcc-8 g++-8"
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=7.0 CC=/usr/bin/clang-7 CXX=/usr/bin/clang++-7
+        env: CONAN_CLANG_VERSIONS=7.0 CC=/usr/bin/clang-7 CXX=/usr/bin/clang++-7 PACKAGES=clang-7
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=8 CC=/usr/bin/clang-8 CXX=/usr/bin/clang++-8
+        env: CONAN_CLANG_VERSIONS=8 CC=/usr/bin/clang-8 CXX=/usr/bin/clang++-8 PACKAGES=clang-8
 
 before_install:
   # Install the proper libstdc++ version
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -q
-  - sudo apt-get install libstdc++-7-dev gcc-7 g++-7 gcc-8 g++-8 -y
+  - sudo apt-get install libstdc++-7-dev ${PACKAGES} -y
   # Install later CMake version
   - figlet "CMake"
   - wget https://github.com/Kitware/CMake/releases/download/v3.14.3/cmake-3.14.3-Linux-x86_64.sh
