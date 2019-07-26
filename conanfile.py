@@ -1,5 +1,6 @@
-from conans import ConanFile, CMake, tools
 import os
+
+from conans import CMake, ConanFile, tools
 
 
 class LibCCDConan(ConanFile):
@@ -52,7 +53,10 @@ class LibCCDConan(ConanFile):
         cmake.definitions[
             "ENABLE_DOUBLE_PRECISION"
         ] = self.options.enable_double_precision
-        cmake.configure(build_folder=self._build_subfolder, source_folder=self._source_subfolder)
+        cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE"] = self.options.fPIC
+        cmake.configure(
+            build_folder=self._build_subfolder, source_folder=self._source_subfolder
+        )
         return cmake
 
     def build(self):
