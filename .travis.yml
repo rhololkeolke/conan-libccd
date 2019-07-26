@@ -31,7 +31,7 @@ matrix:
       - <<: *linux
         env: CONAN_GCC_VERSIONS=8 CC=/usr/bin/gcc-8 CXX=/usr/bin/g++-8 PACKAGES="gcc-8 g++-8"
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=7.0 CC=/usr/bin/clang-7 CXX=/usr/bin/clang++-7 PACKAGES=clang-7
+        env: CONAN_CLANG_VERSIONS=7.1 CC=/usr/bin/clang-7 CXX=/usr/bin/clang++-7 PACKAGES=clang-7
       - <<: *linux
         env: CONAN_CLANG_VERSIONS=8 CC=/usr/bin/clang-8 CXX=/usr/bin/clang++-8 PACKAGES=clang-8
 
